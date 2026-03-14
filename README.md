@@ -37,7 +37,7 @@ $$ \varphi(1,0,X^0) \subset X^0 $$
 If this condition is satisfied, it confirms the existence of a periodic orbit. The program utilizes a rigorous C0 algorithm for integrating partial differential equations (PDEs) to compute the image. Additionally, it attempts to prove that the orbit is locally attracting by verifying:
 
 $$
-||\frac{\partial varphi}{\partial x}(1,0,X_0)||_{H^2(-\pi,\pi)} < 1.
+||\frac{\partial \varphi}{\partial x}(1,0,X_0)||_{H^2(-\pi,\pi)} < 1.
 $$
 
 The computation of derivatives employs a rigorous C1 integration algorithm.
