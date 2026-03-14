@@ -3,7 +3,7 @@
 
 The code is used for computer-assisted proof of the existence of a periodic orbit and its attraction for the non-autonomous Burgers equation with fractional Laplasian:
 
-$$u_t = -(-\Delta)^{\alpha} u + \delta(u^2)_{x} + (A_1\sin(2 pi t)+B_1)\sin(x) +(A_2\sin(2 pi t)+B_2)\sin(2x),$$
+$$u_t = -(-\Delta)^{\alpha} u + \delta(u^2)_{x} + (A_1\sin(2 \pi t)+B_1)\sin(x) +(A_2\sin(2 \pi t)+B_2)\sin(2x),$$
 
 where the solution $u(x,t):\mathbb{R}\times[t_0,T]\to \mathbb{R}$ satisfies odd, $2\pi$-periodic boundary coditions that is $u(x+2\pi,t) = u(x,t)$ and $u(t,x)=u(t,-x).$ We assume that  $A_1,B_1,A_2,B_2\in\mathbb{R}$ and $\delta\in \mathbb{R}$ and $\alpha\in(\frac{1}{2},1]$.
 
@@ -14,22 +14,11 @@ The operator  (-\Delta)^{\alpha} is defined in following way
 $$ (-\Delta)^{\alpha} u^0 = \sum_{i=1}^\infty i^{2\alpha}u_i^0\sin(ix).$$ 
 
 
-The code contains 3 programs:
+The code contains program:
 
 - `Burgers/CAProof`,
 
 The programs use data from files:
-- `ChafeeInfante/textFiles/initialValue.txt` - It contains coefficients for sine odd series used as initial data for the programs. For example,
-
-```r
-{2., -0.5, 0.125, 0.3}
-```
-
-represents initial data in the form
-
-$$
-u^0 = 2\sin(x) - 0.5\sin(3x) - 0.125\sin(5x) + 0.3\sin(7x).
-$$
 
 - Parameters ${\lambda,\omega,A,B}$ are taken from file `ChafeeInfante/textFiles/params.txt` in the form 
 
@@ -38,35 +27,6 @@ $$
 -------------
 {lambda, omega, A, B}
 ```
-
-## ChafeeInfante/sampleDyn.cpp
-
-Program for numerically integrating the Chafee-Infante system. 
-
-- Integrating in the space of odd coefficients.
-- The initial data is taken from the content of file `ChafeeInfante/textFiles/initialValue.txt`. The initial data determines the size of Gallerkin projection.
-- File `ChafeeInfante/textFiles/sampleDynOptions.txt` contains options for the program:
-
-```
-0 1 2000
--------------
-starting time, duration of simulation, number of steps
-```
-
-After running, the program should output sampled points from the trajectory and save them to file `ChafeeInfante/textFiles/sampleDynOutput.txt`.
-
-## ChafeeInfante\findPeriodicPoint
-
-Program for finding periodic orbits of the Chafee-Infate equation. It tries to find a fixed periodic point by iterating the Galerkin approximation of the map.
-
-$$
-T(u_0) = u(1,0;u_0).
-$$
-
-- The initial data for searching is taken from the content of file `ChafeeInfante\textFiles\initialValue.txt`. This initial data determines the size of the Galerkin projection.
-- It assumes that parameter $\omega = 2\pi$, so the value of $\omega$ in file `ChafeeInfante\textFiles\params.txt` does not matter.
-- It outputs the proposed approximation of the founded periodic orbit at zero. It also outputs an approximation of the variational matrix for the map $T$.
-
 
 ## ChafeeInfante\CAProof.cpp
 
@@ -77,7 +37,7 @@ $$ T(X^0) \subset X^0 $$
 If this condition is satisfied, it confirms the existence of a periodic orbit. The program utilizes a rigorous C0 algorithm for integrating partial differential equations (PDEs) to compute the image. Additionally, it attempts to prove that the orbit is locally attracting by verifying:
 
 $$
-||\frac{\partial T}{\partial x}(X_0)||_{C_0} < 1.
+||\frac{\partial T}{\partial x}(X_0)||_{H^2(-\pi,\pi)} < 1.
 $$
 
 The computation of derivatives employs a rigorous C1 integration algorithm.
