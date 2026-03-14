@@ -18,21 +18,14 @@ The code contains program:
 
 - `Burgers/CAProof`,
 
-The programs use data from files:
-
-- Parameters ${\alpha,\omega,\delta,A_1,B_1,A_2,B_2}$ are taken from file `ChafeeInfante/textFiles/params.txt` in the form 
-
-```
-{1,6.28318530718,0.5,0.5,1,0,0}
--------------
-{alfa,omega,delta,A1,B1,A2,B2}
-```
 
 ## Burgers\CAProof.cpp
 
 This program is designed to prove the existence of a periodic orbit and demonstrate its local attraction. It does so by checking whether a defined set $X^0$ satisfies the following condition:
 
 $$ \varphi(1,0,X^0) \subset X^0 $$
+It contstruct this set, by firstly finding numerically fixed point of map \varphi(1,0,\cdot) and then $X^0$ is some neibourhood of this point.
+
 
 If this condition is satisfied, it confirms the existence of a periodic orbit. The program utilizes a rigorous C0 algorithm for integrating partial differential equations (PDEs) to compute the image. Additionally, it attempts to prove that the orbit is locally attracting by verifying:
 
@@ -40,55 +33,21 @@ $$
 ||\frac{\partial \varphi}{\partial x}(1,0,X_0)||_{H^2(-\pi,\pi)} < 1.
 $$
 
+
 The computation of derivatives employs a rigorous C1 integration algorithm.
 
 Here are some details about the program and its inputs:
 
-- The set $X^0$ is centered around an initial condition $u^0$ read from `ChafeeInfante\textFiles\initialValue.txt`,
-- It assumes that parameter $\omega = 2\pi$, so the value of $\omega$ in file `ChafeeInfante\textFiles\params.txt` does not matter.
-- Options for setting up the assisted proof can be found in `ChafeeInfante\textFiles\sampleDynOptions.txt`, including parameters such as:
+The programs use data from files:
+Parameters ${\alpha,\omega,\delta,A_1,B_1,A_2,B_2}$ are taken from file `ChafeeInfante/textFiles/params.txt` in the form 
+
 ```
-1e-4 1 3 
-6 14
-9 17 0
+{1,6.28318530718,0.5,0.5,1,0,0}
 -------------
-eps , C, s
-mainC0Size, fullC0Size
-mainC1Size, fullC1Size, expColumns
-
+{alfa,omega,delta,A1,B1,A2,B2}
+omega is addidtional parametr hardcoded to be equal 2pi, but it has to be on the list of parameters
 ```
-- The set $X_0$ is defined as follows:
-   $$X^0 = X_P^0 + X_Q^0,$$
-  
-where
-$$X_P^0 = u^0(x)+ [-1,1]eps*\sum_{i=1}^n \sin((2i-1)x),$$
 
-and
-
-$$
-    X_Q^0 = \sum_{i=n+1}^\infty \frac{C[-1,1]}{(2i-1)^s}\sin((2i-1)x).
-$$
-
-Here, $n$ depends on the size of the initial condition.
-
-- For C0 computation, the parameters are set as follows:
-   - `mainC0Size`: The number of modes considered for the differential inclusion.
-   - `fullC0Size`: The number of modes explicitly represented.
-   
-The rigorous C0 integration is performed in the odd subspace of Fourier coefficients.
-
-- For C1 computation, the parameters are set as follows:
-   - `mainC1Size`: The number of modes considered for each variable $(u,h)$ in the differential inclusion.
-   - `fullC1Size`: The number of modes explicitly represented for each variable $(u,h)$.
-   - `expColumns`: Number of columns where derivatives are computed explicitly.
-
-The rigorous C1 integration is conducted in full space, not just in the odd subspace. In this case, there are variables representing variational equations. Therefore, the actual number of modes used for differential inclusion is $2 * \text{mainC1Size}$ and the number of modes explicitly represented is $2 * \text{fullC1Size}$.
-
-The remaining columns are computed by setting them to be:
-
-$$
-    X^{0,h} = \sum_{i=\text{expColumns}+1}^\infty u_i\sin(ix),\quad \text{where } u_i\in[-1,1].
-$$
 
 ## Code Information
 
