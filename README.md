@@ -1,21 +1,22 @@
 
 # Chafee-Infante-ComputerAssistedProof
 
-The code is used for computer-assisted proof of the existence of a periodic orbit and its attraction for the non-autonomous Chafee-Infante system:
+The code is used for computer-assisted proof of the existence of a periodic orbit and its attraction for the non-autonomous Burgers equation with fractional Laplasian:
 
-$$u_t = u_{xx} + \lambda u - (A\sin(\omega t)+B)u^3,$$
+$$u_t = -(-\Delta)^{\alpha} u + \delta(u^2)_{x} + (A_1\sin(2 pi t)+B_1)\sin(x) +(A_2\sin(2 pi t)+B_2)\sin(2x),$$
 
-where the solution $u(x,t):[0,\pi]\times[t_0,T]\to \mathbb{R}$ satisfies Dirichlet boundary codition, where $A,B\in\mathbb{R}$ and $\lambda,\omega\in \mathbb{R}$.
+where the solution $u(x,t):\mathbb{R}\times[t_0,T]\to \mathbb{R}$ satisfies odd, $2\pi$-periodic boundary coditions that is $u(x+2\pi,t) = u(x,t)$ and $u(t,x)=u(t,-x).$ We assume that  $A_1,B_1,A_2,B_2\in\mathbb{R}$ and $\delta\in \mathbb{R}$ and $\alpha\in(\frac{1}{2},1]$.
 
 We work in the Fourier base, which means we write every point from the phase space in the form
 
 $$ u^0 = \sum_{i=1}^\infty u_i^0\sin(ix).$$ 
+The operator  (-\Delta)^{\alpha} is defined in following way
+$$ (-\Delta)^{\alpha} u^0 = \sum_{i=1}^\infty i^{2\alpha}u_i^0\sin(ix).$$ 
+
 
 The code contains 3 programs:
 
-- `ChafeeInfante/sampleDyn`,
-- `ChafeeInfante/findPeriodicPoint`,
-- `ChafeeInfante/CAProof`.
+- `Burgers/CAProof`,
 
 The programs use data from files:
 - `ChafeeInfante/textFiles/initialValue.txt` - It contains coefficients for sine odd series used as initial data for the programs. For example,
