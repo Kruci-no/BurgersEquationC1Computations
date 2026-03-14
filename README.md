@@ -23,12 +23,12 @@ The programs use data from files:
 - Parameters ${\lambda,\omega,A,B}$ are taken from file `ChafeeInfante/textFiles/params.txt` in the form 
 
 ```
-{2, 6.28318530718, 1.5, 1}
+{1,6.28318530718,0.5,0.5,1,0,0}
 -------------
-{lambda, omega, A, B}
+{alfa,omega,delta,A1,B1,A2,B2}
 ```
 
-## ChafeeInfante\CAProof.cpp
+## Burgers\CAProof.cpp
 
 This program is designed to prove the existence of a periodic orbit and demonstrate its local attraction. It does so by checking whether a defined set $X^0$ satisfies the following condition:
 
