@@ -30,7 +30,7 @@ It contstruct this set, by firstly finding numerically fixed point of map $\varp
 If this condition is satisfied, it confirms the existence of a periodic orbit. The program utilizes a rigorous C0 algorithm for integrating partial differential equations (PDEs) to compute the image. Additionally, it attempts to prove that the orbit is locally attracting by verifying:
 
 $$
-||\frac{\partial \varphi}{\partial x}(1,0,X_0)||_{H^2(-\pi,\pi)} < 1.
+|\left|\frac{\partial \varphi}{\partial x}(1,0,X_0)\right||_{H^2(-\pi,\pi)} < 1.
 $$
 
 
