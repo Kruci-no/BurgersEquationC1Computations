@@ -32,12 +32,12 @@ The programs use data from files:
 
 This program is designed to prove the existence of a periodic orbit and demonstrate its local attraction. It does so by checking whether a defined set $X^0$ satisfies the following condition:
 
-$$ T(X^0) \subset X^0 $$
+$$ \varphi(1,0,X^0) \subset X^0 $$
 
 If this condition is satisfied, it confirms the existence of a periodic orbit. The program utilizes a rigorous C0 algorithm for integrating partial differential equations (PDEs) to compute the image. Additionally, it attempts to prove that the orbit is locally attracting by verifying:
 
 $$
-||\frac{\partial T}{\partial x}(X_0)||_{H^2(-\pi,\pi)} < 1.
+||\frac{\partial varphi}{\partial x}(1,0,X_0)||_{H^2(-\pi,\pi)} < 1.
 $$
 
 The computation of derivatives employs a rigorous C1 integration algorithm.
