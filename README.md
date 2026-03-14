@@ -43,9 +43,9 @@ Parameters ${\alpha,\omega,\delta,A_1,B_1,A_2,B_2}$ are taken from file `ChafeeI
 {1,6.28318530718,0.5,0.5,1,0,0}
 -------------
 {alfa,omega,delta,A1,B1,A2,B2}
-omega is addidtional parametr hardcoded to be equal 2pi, but it has to be on the list of parameters
-```
 
+```
+$\omega$ is addidtional parametr hardcoded to be equal $2pi$, but it has to be on the list of parameters. Also $\alpha$ has to be provided but does not change the output of program.
 
 ## Code Information
 
@@ -67,9 +67,9 @@ omega is addidtional parametr hardcoded to be equal 2pi, but it has to be on the
 
 - Folder Utils mainly contains Input/Output settings.
 
-- Folder ChafeeInfante contains code specifically dedicated to Chafee-Infante:
-   - Folder ChafeeInfante\ChafeeInfanteVecField containing C0 and C1 vector fields used in rigrous integration
-   - Folder ChafeeInfante\GallerkinProjections containing method to produce strings, used in IMap class, for Gallerkin projection of the Chafee-Infante equation.
+- Folder Burgers contains code specifically dedicated to Burgers:
+   - Folder Burgers\ChafeeInfanteVecField containing C0 and C1 vector fields used in rigrous integration
+   - Folder Burgers\GallerkinProjections containing method to produce strings, used in IMap class, for Gallerkin projection of the Burgers equation.
 
 
 
