@@ -24,6 +24,7 @@ The code contains program:
 This program is designed to prove the existence of a periodic orbit and demonstrate its local attraction. It does so by checking whether a defined set $X^0$ satisfies the following condition:
 
 $$ \varphi(1,0,X^0) \subset X^0 $$
+
 It contstruct this set, by firstly finding numerically fixed point of map \varphi(1,0,\cdot) and then $X^0$ is some neibourhood of this point.
 
 
