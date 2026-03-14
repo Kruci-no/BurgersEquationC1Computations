@@ -20,7 +20,7 @@ The code contains program:
 
 The programs use data from files:
 
-- Parameters ${\lambda,\omega,A,B}$ are taken from file `ChafeeInfante/textFiles/params.txt` in the form 
+- Parameters ${\alpha,\omega,\delta,A_1,B_1,A_2,B_2}$ are taken from file `ChafeeInfante/textFiles/params.txt` in the form 
 
 ```
 {1,6.28318530718,0.5,0.5,1,0,0}
