@@ -35,7 +35,7 @@ $$
 
 
 The computation of derivatives employs a rigorous C1 integration algorithm.
-We do this prosecude for $\alpha = \frac{1}{2} +\frac{k}{32}$, $k = 32,\ldots, 1,$ starting with $k=32.$ We go down with the $k$ to see how close we can get to the critical value of $\alpha = \frac{1}{2}.$ If estimates blow-up we increase the number of explicitly represented modes. If this number get bigger then $200$ we end the prosedure,
+We do this prosecude for $\alpha = \frac{1}{2} +\frac{k}{32}$, $k = 32,\ldots, 1$ starting with $k=32.$ We go down with the $k$ to see how close we can get to the critical value of $\alpha = \frac{1}{2}.$ If estimates blow-up we increase the number of explicitly represented modes. If this number get bigger then $200$ we end the prosedure,
 
 Parameters ${\alpha,\omega,\delta,A_1,B_1,A_2,B_2}$ are taken from file `ChafeeInfante/textFiles/params.txt` in the form 
 
