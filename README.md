@@ -54,7 +54,7 @@ $\omega$ is addidtional parametr hardcoded to be equal $2pi$, but it has to be o
   - The Makefile assumes that the CAPD library is located in the following position relative to the main directory:
    ```
    # directory where capd scripts are (e.g. capd-config)
-   CAPDBINDIR = ../capd-capdDynSys-5.1.2/bin/
+   CAPDBINDIR = ../CAPD/build/bin/
    
    ```
 
