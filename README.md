@@ -1,5 +1,5 @@
 
-# Chafee-Infante-ComputerAssistedProof
+# Burgers computer assisted proof code
 
 The code is used for computer-assisted proof of the existence of a periodic orbit and its attraction for the non-autonomous Burgers equation with fractional Laplasian:
 
