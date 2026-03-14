@@ -25,8 +25,7 @@ This program is designed to prove the existence of a periodic orbit and demonstr
 
 $$ \varphi(1,0,X^0) \subset X^0 $$
 
-It contstruct this set, by firstly finding numerically fixed point of map \varphi(1,0,\cdot) and then $X^0$ is some neibourhood of this point.
-
+It contstruct this set, by firstly finding numerically fixed point of map $\varphi(1,0,\cdot)$ and then $X^0$ is some neighborhood of this point.
 
 If this condition is satisfied, it confirms the existence of a periodic orbit. The program utilizes a rigorous C0 algorithm for integrating partial differential equations (PDEs) to compute the image. Additionally, it attempts to prove that the orbit is locally attracting by verifying:
 
@@ -36,10 +35,8 @@ $$
 
 
 The computation of derivatives employs a rigorous C1 integration algorithm.
+We do this prosecude for $\alpha = \frac{1}{2} +\frac{k}{32}$, $k = 32,\ldots, 1,$ starting with $k=32.$ We go down with the $k$ to see how close we can get to the critical value of $\alpha = \frac{1}{2}.$ If estimates blow-up we increase the number of explicitly represented modes. If this number get bigger then $200$ we end the prosedure,
 
-Here are some details about the program and its inputs:
-
-The programs use data from files:
 Parameters ${\alpha,\omega,\delta,A_1,B_1,A_2,B_2}$ are taken from file `ChafeeInfante/textFiles/params.txt` in the form 
 
 ```
