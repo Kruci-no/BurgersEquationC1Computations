@@ -26,7 +26,7 @@ void Encloser::enclose(Set& x,VectorField& vectorField,interval dt,int refineNum
             cout <<"Enclosure extend";
             enclosureExtent.print();
             cout << iter <<endl ;
-            throw debugException("cannot find enclosure");
+            throw debugException::create("cannot find enclosure after {} iterations", LogLevel::CRITICAL, std::source_location::current(), iter);
         }      
         interval timeDuration = x.getCurrentTime() + interval(0,1)*dt ;
         SeriesVector expLminusOne = expMinusOne(L*dt*interval(0,1));
