@@ -408,7 +408,7 @@ namespace Algebra{
   Series hull(const Series &x,const Series &y)
   {
     if(x.type!=y.type)
-      throw debugException("hull - Non maching types");
+      throw debugException("hull - Non matching types");
     Series result;
     result.type = x.type;
     int newSize = std::max(x.mainSize,y.mainSize);
@@ -440,7 +440,7 @@ namespace Algebra{
   Series intersection(const Series&x ,const Series&y) 
   {
     if(x.type!=y.type)
-      throw debugException("intersection - Non maching types");
+      throw debugException("intersection - Non matching types");
     if(x.s!=y.s)
       throw debugException("Series have Different decays");
     Series result;
@@ -471,7 +471,7 @@ namespace Algebra{
   Series semiIntersection(const Series& x,const Series& y) 
   {
     if(x.type!=y.type)
-      throw debugException("semiIntersection - Non maching types");
+      throw debugException("semiIntersection - Non matching types");
     Series result;
     result.type = x.type;
     int newSize = std::max(x.mainSize,y.mainSize);
@@ -542,7 +542,7 @@ namespace Algebra{
   Series operator+(const Series& x,const Series& y) 
   {
       if(x.type!=y.type)
-          throw debugException("operator + Non maching types");
+          throw debugException("operator + Non matching types");
       Series result;
       result.type = x.type;
       int newSize = std::max(x.mainSize,y.mainSize);
@@ -576,13 +576,13 @@ namespace Algebra{
       return result;  
   }
 
-  Series squere(const Series& x) 
+  Series square(const Series& x)
   {
       if(x.s<interval(1)){
-        throw debugException("Series usufficient decays\n");
+        throw debugException("Series insufficient decays\n");
       }
       if(x.type== SeriesType::cos || x.type == SeriesType::cos_even)
-          throw debugException("squere operation not supported");
+          throw debugException("square operation not supported");
       int newSize;
       Series result;
       if(x.type == SeriesType::sin ){
@@ -781,7 +781,7 @@ namespace Algebra{
     if( x.s<=interval(1)||y.s<=interval(0)){
         x.print();
         y.print();
-        throw debugException("Series usufficient decays\n");
+        throw debugException("Series insufficient decays\n");
     }
     if(x.mainSize != y.mainSize){
         throw debugException("Size error\n");
@@ -850,19 +850,19 @@ namespace Algebra{
       
       if((x.type == SeriesType::cos && y.type == SeriesType::cos) || (x.type == SeriesType::cos_even && y.type == SeriesType::cos_even)){
           if(x.s<interval(1) || y.s<interval(1)){
-            throw debugException("Series usufficient decays\n");
+            throw debugException("Series insufficient decays\n");
           }
           throw debugException("cos series times cos series is not supported\n");
       }
       if((x.type == SeriesType::sin && y.type == SeriesType::cos )||(x.type == SeriesType::sin_odd && y.type == SeriesType::cos_even)){
           if(y.s<interval(1)){
-            throw debugException("Cos Series usufficient decays\n");
+            throw debugException("Cos Series insufficient decays\n");
           }
           return sinTimesCos(x,y);
       }
       if((y.type == SeriesType::sin && x.type == SeriesType::cos )||(y.type == SeriesType::sin_odd && x.type == SeriesType::cos_even)){
           if(x.s<interval(1)){
-            throw debugException("Cos Series usufficient decays\n");
+            throw debugException("Cos Series insufficient decays\n");
           }
           return sinTimesCos(y,x);
       }
@@ -870,7 +870,7 @@ namespace Algebra{
       if((x.type == SeriesType::sin && y.type == SeriesType::sin )||(x.type == SeriesType::sin_odd && y.type == SeriesType::sin_odd)){
           return sinTimesSin(x,y);
       }
-      throw debugException("no maching types multiplication");
+      throw debugException("no matching types multiplication");
   }
 
 

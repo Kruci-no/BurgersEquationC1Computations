@@ -1,4 +1,5 @@
 #include "set.h"
+#include "../../Utils/Debug/debugException.h"
 using namespace std;
 using namespace capd;
 using namespace Algebra;
@@ -31,7 +32,7 @@ capd::IVector Indexer::getIVector(SeriesVector& x)
         return result;
 }
 
-void Indexer::intersectRepresetations(capd::InclRect2Set& mainModes,SeriesVector& x) 
+void Indexer::intersectRepresentations(capd::InclRect2Set& mainModes,SeriesVector& x)
 {
     IVector main = (IVector) mainModes;
     for(int i=0;i<size();i++){
@@ -42,12 +43,12 @@ void Indexer::intersectRepresetations(capd::InclRect2Set& mainModes,SeriesVector
             std::cout<< "\nAt Vector Series index: " << l << "-" << r<<"\n";
             std::cout<< main<<"\n";
             x.print();
-            throw std::runtime_error("Set intersectRepresetations - empty intersection\n");
+            throw debugException("Set intersectRepresentations - empty intersection\n");
         }
     }
 }
 
-void Indexer::makeCosistend(capd::InclRect2Set& mainModes,SeriesVector& x) 
+void Indexer::makeConsistent(capd::InclRect2Set& mainModes,SeriesVector& x)
 {
     IVector main = (IVector) mainModes;
     for(int i=0;i<size();i++){
@@ -62,14 +63,14 @@ Set::Set(SeriesVector vector,capd::InclRect2Set mainModes)
 {
 }
 
-void Set::intersectRepresetations(Indexer indexer) 
+void Set::intersectRepresentations(Indexer indexer)
 {
-    indexer.intersectRepresetations(mainModes,vector);    
+    indexer.intersectRepresentations(mainModes,vector);
 }
 
-void Set::makeCosistend(Indexer indexer) 
+void Set::makeConsistent(Indexer indexer)
 {
-    indexer.makeCosistend(mainModes,vector);
+    indexer.makeConsistent(mainModes,vector);
 }
 
 interval Set::getCurrentTime() 
