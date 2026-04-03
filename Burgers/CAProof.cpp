@@ -1,7 +1,7 @@
 #include "InOut/inOut.h"
 #include "capd/capdlib.h"
 #include "GallerkinProjections/gallerkinProjections.h"
-#include "burgersVecField/burgersVecField.h"
+#include "BurgersVecField/burgersVecField.h"
 #include "../DissipativePDE/Algebra/algebra.h"
 #include "../DissipativePDE/Set/set.h"
 #include "../DissipativePDE/SolverPDE/solverPDE.h"

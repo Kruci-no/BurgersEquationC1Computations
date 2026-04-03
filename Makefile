@@ -3,7 +3,7 @@ PROGS = Burgers/CAProof
 OTHERS = DissipativePDE/Algebra/algebra DissipativePDE/Set/set DissipativePDE/VectorField/vectorField DissipativePDE/SolverPDE/solverPDE DissipativePDE/VectorFieldMaker/vectorFieldMaker Burgers/GallerkinProjections/gallerkinProjections Burgers/InOut/inOut Utils/SampleDyn/sampleDyn Utils/FinderAttractingFixedPoint/finderAttractingFixedPoint  Burgers/BurgersVecField/burgersVecField Utils/Debug/debugException#Burgers/BurgersVecFieldC1/burgersVecFieldC1#ChafeeInfante/ChafeeInfanteVecFieldC1/chafeeInfanteVecFieldC1
 #
 # directory where capd scripts are (e.g. capd-config)
-CAPDBINDIR = ../CAPD/build/bin/
+CAPDBINDIR = CAPD_lib/build/bin/
 
 # setting compiler and linker flags
 CAPDFLAGS = `${CAPDBINDIR}capd-config --cflags`

@@ -28,10 +28,10 @@ SeriesVector linearC1(int size,ParamsMap params){
 }
 SeriesVector nonlinearity(interval time, SeriesVector x,ParamsMap params){
     SeriesVector y(1);
-    Series u_squered_x = (squere(x[0]).resize(x[0].mainSize + 1)).seriesDerivative();
+    Series u_squared_x = (square(x[0]).resize(x[0].mainSize + 1)).seriesDerivative();
     interval sinValue = sin(time*params["omega"]) ;
    
-    y[0]=  params["delta"]*u_squered_x ;
+    y[0]=  params["delta"]*u_squared_x ;
     
     y[0].main[0] = y[0].main[0] + params["A1"]*sinValue+ params["B1"] ;
    
@@ -40,9 +40,9 @@ SeriesVector nonlinearity(interval time, SeriesVector x,ParamsMap params){
 }
 SeriesVector nonlinearityC1(interval time, SeriesVector x,ParamsMap params){
     SeriesVector y(2);
-    Series u_squered_x = (squere(x[0]).resize(x[0].mainSize + 1)).seriesDerivative();
+    Series u_squared_x = (square(x[0]).resize(x[0].mainSize + 1)).seriesDerivative();
     interval sinValue = sin(time*params["omega"]) ;
-    y[0] =  params["delta"]*u_squered_x ;
+    y[0] =  params["delta"]*u_squared_x ;
     y[0].main[0] = y[0].main[0] + params["A1"]*sinValue+ params["B1"] ;
    
     y[0].main[1] = y[0].main[1] + params["A2"]*sinValue+ params["B2"] ;

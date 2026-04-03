@@ -21,9 +21,9 @@ struct Encloser{
                 Set& x,
                 VectorField& vectorField,
                 capd::interval dt,
-                int refineNum,
-                bool constStep, 
-                bool comPointWiseEnclose);
+                int refineNum = 0,
+                bool constStep = false,
+                bool comPointWiseEnclose = false);
 };
 
 struct Mover{
