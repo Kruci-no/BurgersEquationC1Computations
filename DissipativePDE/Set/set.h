@@ -11,15 +11,15 @@ struct Indexer{
     std::pair<Algebra::SeriesVector, Algebra::SeriesVector > splitVector (Algebra::SeriesVector& x);
     int size();
     capd::IVector getIVector(Algebra::SeriesVector& x);
-    void intersectRepresetations(capd::InclRect2Set& mainModes,Algebra::SeriesVector& x);
-    void makeCosistend(capd::InclRect2Set& mainModes,Algebra::SeriesVector& x);
+    void intersectRepresentations(capd::InclRect2Set& mainModes,Algebra::SeriesVector& x);
+    void makeConsistent(capd::InclRect2Set& mainModes,Algebra::SeriesVector& x);
 };
 struct Set{
     Algebra::SeriesVector vector;
     capd::InclRect2Set mainModes;
     Set(Algebra::SeriesVector vector,capd::InclRect2Set mainModes);
-    void intersectRepresetations(Indexer indexer);
-    void makeCosistend(Indexer indexer);
+    void intersectRepresentations(Indexer indexer);
+    void makeConsistent(Indexer indexer);
     capd::interval getCurrentTime();
 };
 

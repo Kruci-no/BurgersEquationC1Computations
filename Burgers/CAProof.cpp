@@ -1,9 +1,8 @@
 #include "InOut/inOut.h"
 #include "capd/capdlib.h"
 #include "GallerkinProjections/gallerkinProjections.h"
-#include "burgersVecField/burgersVecField.h"
+#include "BurgersVecField/burgersVecField.h"
 #include "../DissipativePDE/Algebra/algebra.h"
-#include "../DissipativePDE/Set/set.h"
 #include "../DissipativePDE/Set/set.h"
 #include "../DissipativePDE/SolverPDE/solverPDE.h"
 #include "../Utils/Debug/debugException.h"
@@ -13,7 +12,7 @@
 using namespace std;
 using namespace Algebra;
 using namespace capd;
-std::pair<Series, bool> cheakInclusion
+std::pair<Series, bool> checkInclusion
     (Series u,int mainSize, int fullSize, DVector paramsDVector){
     ParamsMap params = {{"alfa",paramsDVector[0]},{"omega",2*Interval::pi()},{"delta",paramsDVector[2]} ,{"A1",paramsDVector[3]},{"B1",paramsDVector[4]},{"A2",paramsDVector[5]},{"B2",paramsDVector[6]}};
     SeriesVector vec(1);
@@ -88,7 +87,7 @@ DVector findFixedPoint(int dim, DVector params ,DMap f, double eps){
         prev = next;
     }while( eps<err  &&iter < MaxIter);
     if(iter == MaxIter){
-        throw std::runtime_error("Cannot Find fixed Point");
+        throw debugException("Cannot Find fixed Point");
     }
     double startTime = 0; double endTime = 1;
     DMatrix initMatrix = DMatrix::Identity(dim) ;
@@ -124,7 +123,7 @@ void ComputerAssistedProof(int mainC0Size, int fullC0Size, int mainC1Size, int f
     startingSet.s = s+1;
     Series startingSetH(interval(-1,1),interval(2),SeriesType::sin);
     auto start = std::chrono::high_resolution_clock::now();
-    auto [result, isInclusion] = cheakInclusion(startingSet, mainC0Size, fullC0Size, paramsDVector);
+    auto [result, isInclusion] = checkInclusion(startingSet, mainC0Size, fullC0Size, paramsDVector);
     auto stop = std::chrono::high_resolution_clock::now();
     if(isInclusion){
         std::chrono::duration<double> czas = stop - start;
@@ -169,7 +168,8 @@ void ProofList(){
         try{
             ComputerAssistedProof(mainC0Size,fullC0Size,mainC0Size,fullC0Size,0.001,2,paramsDVector);
         }
-        catch(...){
+        catch(const std::exception& e){
+            cout << "Exception: " << e.what() << endl;
             cout << "Change of dimetions" <<endl;
             i = i-1;
             mainC0Size = mainC0Size+10;

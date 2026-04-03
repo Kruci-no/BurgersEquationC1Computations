@@ -1,12 +1,13 @@
 #include "solverPDE.h"
+#include "../../Utils/Debug/debugException.h"
 using namespace std;
 using namespace capd;
 using namespace Algebra;
-void Encloser::enclose(Set& x,VectorField& vectorField,interval dt,int refineNum = 0,bool constStep = false,bool comPointWiseEnclose = false){
+void Encloser::enclose(Set& x,VectorField& vectorField,interval dt,int refineNum,bool constStep,bool comPointWiseEnclose){
     SeriesVector L = vectorField.L;
-    SeriesVector eps(x.vector.vec.size(),interval(-0.01,0.01)*1,x.vector.vec[0].s,x.vector.vec[0].type);
+    SeriesVector eps(x.vector.vec.size(), initialEpsRange, x.vector.vec[0].s, x.vector.vec[0].type);
     for(int i=0;i<eps.vec.size();i++){
-        eps[i] = Series(interval(-0.01,0.01), x.vector.vec[i].s, x.vector.vec[i].type);
+        eps[i] = Series(initialEpsRange, x.vector.vec[i].s, x.vector.vec[i].type);
     }
     eps = eps ;
     enclosureExtent = eps;
@@ -19,13 +20,13 @@ void Encloser::enclose(Set& x,VectorField& vectorField,interval dt,int refineNum
     while(status != Status::end){
         
         //cout << iter <<endl;
-        if(dt < 1e-50 || iter >100){
+        if(dt < minDt || iter > maxIterations){
             cout << "x";
             x.vector.print();
             cout <<"Enclosure extend";
             enclosureExtent.print();
             cout << iter <<endl ;
-            throw std::runtime_error("cannot find enlosure");
+            throw debugException::create("cannot find enclosure after {} iterations", LogLevel::CRITICAL, std::source_location::current(), iter);
         }      
         interval timeDuration = x.getCurrentTime() + interval(0,1)*dt ;
         SeriesVector expLminusOne = expMinusOne(L*dt*interval(0,1));
@@ -58,7 +59,7 @@ void Encloser::enclose(Set& x,VectorField& vectorField,interval dt,int refineNum
                     if(!constStep){
                         dt = dt*interval(1./2);
                     }
-                    enclosureExtent = (image + eps )*interval(-0.05,1.1);// eps*interval(0,30)+x.vector*interval(-10,10));
+                    enclosureExtent = (image + eps ) * enclosureExpansionFactor;
     
                 }
                 break; 
@@ -94,9 +95,9 @@ Mover::Mover(VectorField& vectorField,Encloser encloser)
     this->minDecay = interval(-100000);
     this->step = interval(1./512);
     this->perturbMap = IMap(perturb, vectorField.nMain, vectorField.nMain, vectorField.nMain);
-    this->multiMap = new IMultiMap(vectorField.f, this->perturbMap);
+    this->multiMap = std::make_unique<IMultiMap>(vectorField.f, this->perturbMap);
     int order = 7;
-    solver = new  CWDiffInclSolver( *(this->multiMap) ,order , IMaxNorm() );
+    solver = std::make_unique<CWDiffInclSolver>( *(this->multiMap) ,order , IMaxNorm() );
 }
 
 void Mover::setStep(interval step) 
@@ -165,7 +166,7 @@ void Mover::move(Set& x,VectorField& vectorField,bool constStep = false)
     /*if(x.getCurrentTime()!=startTime+dt){
         cout<< "Time Error";
     }*/
-    x.intersectRepresetations(vectorField.indexer);
+    x.intersectRepresentations(vectorField.indexer);
 }
 
 void  Mover::perturb(capd::autodiff::Node t, capd::autodiff::Node in[], int dimIn, 

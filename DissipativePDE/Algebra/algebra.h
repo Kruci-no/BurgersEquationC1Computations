@@ -75,7 +75,7 @@ struct Series
     friend Series operator-(const Series& x,const Series& y);//działa bez zera ale zwraca szereg z zerem
     friend Series intersection(const Series& x,const Series& y);//działa dla szeregów z takim samym decayej
     friend Series semiIntersection(const Series& x,const Series& y);
-    friend Series squere(const Series& x);//działa bez zera ale zwraca szereg z zerem
+    friend Series square(const Series& x);//działa bez zera ale zwraca szereg z zerem
     friend Series mult(const Series& x,const Series& y);//działa bez zera ale zwraca szereg z zerem
     friend Series elementWiseMult(const Series &x,const Series &y);//działa bez zera
     friend Series hull(const Series &x,const Series &y);
